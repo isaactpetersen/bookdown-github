@@ -12,14 +12,14 @@ jobs:
     name: Render-Book
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: r-lib/actions/setup-r@v1
-      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: actions/checkout
+      - uses: r-lib/actions/setup-r
+      - uses: r-lib/actions/setup-pandoc
       - name: Install rmarkdown
         run: Rscript -e 'install.packages(c("rmarkdown","bookdown"))'
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact
         with:
           name: _book
           path: _book/
@@ -35,14 +35,14 @@ jobs:
      - name: Checkout
        uses: actions/checkout@master
      - name: Download artifact
-       uses: actions/download-artifact@v1.0.0
+       uses: actions/download-artifact
        with:
          # Artifact name
          name: _book # optional
          # Destination path
          path: _book # optional
      - name: Deploy to GitHub Pages
-       uses: Cecilapp/GitHub-Pages-deploy@v3
+       uses: Cecilapp/GitHub-Pages-deploy
        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        with:
