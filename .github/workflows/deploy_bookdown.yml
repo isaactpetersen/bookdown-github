@@ -1,4 +1,7 @@
 # From: https://orchid00.github.io/actions_sandbox/websites-using-pkgdown-bookdown-and-blogdown.html#deploy-bookdown
+# To Do:
+# 1. Create a personal access token (PAT) labeled `EMAIL`: https://github.com/settings/tokens; save the value in LastPass
+# 2. Create a secret labeled `EMAIL` in the repo (Settings -> Security -> Secrets -> Actions), and copy the PAT for `EMAIL` into the secret labeled `EMAIL`
 
 on:
   push:
@@ -35,14 +38,14 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v3 # update
      - name: Download artifact
-       uses: actions/download-artifact@v3
+       uses: actions/download-artifact@v3 # update
        with:
          # Artifact name
          name: _book # optional
          # Destination path
          path: _book # optional
      - name: Deploy to GitHub Pages
-       uses: Cecilapp/GitHub-Pages-deploy@v3
+       uses: Cecilapp/GitHub-Pages-deploy@v3 # update
        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        with:
